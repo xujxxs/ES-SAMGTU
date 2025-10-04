@@ -1,7 +1,8 @@
-import { useState } from "react";
-
-function Home() {
-  return <div>ads</div>;
-}
-
-export default Home;
+import { Header } from "./header/Header";
+export const Home = () => {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+};
