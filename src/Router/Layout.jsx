@@ -9,7 +9,7 @@ export const Layout = () => {
   return (
     <div className="w-full">
       {!isHomePage && (
-        <header className="flex items-center justify-between px-4 sm:px-6 lg:px-40 py-4">
+        <header className="bg-white flex items-center justify-between px-4 py-1 sm:px-6 lg:px-40 lg:py-4">
           <Link to={"/"}>
             <img
               src="/logo.svg"
