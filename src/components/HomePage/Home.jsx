@@ -3,9 +3,10 @@ import { Footer } from "./footer/Footer";
 import { FindYourFuture } from "./main/FindYourFuture";
 export const Home = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Header />
       <FindYourFuture />
+      <Footer />
     </div>
   );
 };
