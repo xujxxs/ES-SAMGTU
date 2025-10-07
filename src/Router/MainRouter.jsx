@@ -10,7 +10,7 @@ export function MainRouter() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/survey" element={<Quiz />} />
-          <Route path="survey/results" element={<Results />} />
+          <Route path="/survey/results" element={<Results />} />
         </Route>
       </Routes>
     </Router>

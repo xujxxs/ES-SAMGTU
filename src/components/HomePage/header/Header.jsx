@@ -1,4 +1,8 @@
-export const Header = () => {
+export const Header = ({ onScrollToHowItWorks }) => {
+  const handleHowItWorksScroll = (e) => {
+    e.preventDefault();
+    onScrollToHowItWorks();
+  };
   return (
     <div className="w-full">
       <header className="flex items-center justify-center px-4 py-1 sm:px-6 lg:px-40 lg:py-4 lg:justify-between bg-white">
@@ -17,12 +21,13 @@ export const Header = () => {
           >
             О нас
           </a>
-          <a
+          <button
             href="/"
             className="duration-200 ease-in hover:text-gray-700 transition-colors"
+            onClick={handleHowItWorksScroll}
           >
             Как это работает
-          </a>
+          </button>
         </div>
       </header>
     </div>

@@ -44,24 +44,28 @@ export const Quiz = () => {
   }
 
   return (
-    <div className="py-20 px-150">
-      <div className="flex justify-between text-gray-500">
-        <h4 className="font-medium">
-          Вопрос {currentQuestion + 1} из {quizData.questions.length}
-        </h4>
-        <h4 className="font-medium">{progress}%</h4>
-      </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mt-3">
-        <div
-          className="bg-blue-600 h-2.5 rounded-full transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-      <div className="flex justify-center bg-white mt-20 rounded-2xl p-10 shadow-lg shadow-blue-200">
-        <Question
-          question={quizData.questions[currentQuestion]}
-          handleAnswerSelect={handleAnswerSelect}
-        />
+    <div className="min-h-screen p-3 sm:p-4 md:p-6">
+      <div className="max-w-3xl mx-auto">
+        <div className="flex justify-between text-gray-600 mb-2">
+          <h4 className="font-medium text-xs sm:text-sm md:text-base">
+            Вопрос {currentQuestion + 1} из {quizData.questions.length}
+          </h4>
+          <h4 className="font-medium text-xs sm:text-sm md:text-base">
+            {progress}%
+          </h4>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-2 mb-4 sm:mb-6 md:mb-8">
+          <div
+            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-sm sm:shadow-md md:shadow-lg shadow-blue-100">
+          <Question
+            question={quizData.questions[currentQuestion]}
+            handleAnswerSelect={handleAnswerSelect}
+          />
+        </div>
       </div>
     </div>
   );

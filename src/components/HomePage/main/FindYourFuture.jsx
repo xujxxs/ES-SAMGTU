@@ -22,19 +22,25 @@ export const FindYourFuture = () => {
           <div>
             <div className="mt-12 sm:mt-20 lg:mt-28 ms-0 sm:ms-5 flex justify-center sm:justify-start">
               <div className="text-center me-8 sm:me-12 lg:me-20">
-                <h2 className="text-2xl sm:text-3xl font-bold">20+</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#004282]">
+                  20+
+                </h2>
                 <h6 className="font-light text-gray-500 text-sm sm:text-base">
                   Направлений
                 </h6>
               </div>
               <div className="text-center me-8 sm:me-12 lg:me-20">
-                <h2 className="text-2xl sm:text-3xl font-bold">10K+</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#004282]">
+                  10K+
+                </h2>
                 <h6 className="font-light text-gray-500 text-sm sm:text-base">
                   Студентов
                 </h6>
               </div>
               <div className="text-center">
-                <h2 className="text-2xl sm:text-3xl font-bold">95%</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#004282]">
+                  95%
+                </h2>
                 <h6 className="font-light text-gray-500 text-sm sm:text-base">
                   Точность
                 </h6>
