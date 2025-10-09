@@ -1,5 +1,4 @@
-import { useMemo } from "react";
-import { quizData } from "../../data/quizData";
+import { useEffect, useMemo } from "react";
 import { DirectionItem } from "../HomePage/main/Direct/DirectionItem";
 import { DirectionData } from "../../data/cardOfDirection.data";
 
@@ -72,6 +71,7 @@ export const Results = ({ scores }) => {
               image={directionItem.image}
               name={directionItem.name}
               code={directionItem.number}
+              url={directionItem.url}
             />
           </div>
         ))}

@@ -1,8 +1,10 @@
-export const DirectionItem = ({ id, image, name, code }) => {
+import { Link } from "react-router-dom";
+
+export const DirectionItem = ({ id, image, name, code, url }) => {
   return (
-    <div
-      className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl shadow-md sm:shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-xs sm:max-w-sm lg:w-80 mx-auto sm:mx-2 lg:mx-4 border border-gray-100"
-      key={id}
+    <Link
+      className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl shadow-md sm:shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-xs sm:max-w-sm lg:w-80 mx-auto sm:mx-2 lg:mx-4 border border-gray-100 block"
+      to={url}
     >
       <div className="relative h-32 sm:h-44 lg:h-48 overflow-hidden bg-gradient-to-br from-blue-50 to-gray-100">
         <img
@@ -68,6 +70,6 @@ export const DirectionItem = ({ id, image, name, code }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

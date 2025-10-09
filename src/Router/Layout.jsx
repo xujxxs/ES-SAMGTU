@@ -1,5 +1,5 @@
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { useState, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 
 export const Layout = () => {
   const headerRef = useRef(null);
