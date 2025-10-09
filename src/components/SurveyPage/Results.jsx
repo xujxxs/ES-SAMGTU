@@ -37,15 +37,32 @@ export const Results = ({ scores }) => {
   console.log(topDirectionItems);
 
   return (
-    <div>
-      {topDirectionItems.map((directionItem, index) => (
-        <DirectionItem
-          id={index}
-          image={directionItem.image}
-          name={directionItem.name}
-          code={directionItem.number}
-        />
-      ))}
+    <div className="min-h-screen flex flex-col justify-center items-center">
+      <div className="text-center max-w-4xl mx-auto px-4 mt-10">
+        <div className="flex justify-center mb-6">
+          <img src="/congratulations.svg" alt="Happy" />
+        </div>
+        <h1 className="text-2xl font-bold text-gray-700 mb-4">Поздравляем!</h1>
+        <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl">
+          На основе вашего опроса мы определили идеальные направления для
+          поступления на ИАИТ. Эти рекомендации учитывают ваши интересы, сильные
+          стороны и карьерные цели.
+        </p>
+      </div>
+      <h2 className=" text-3xl font-bold text-gray-700 mt-20 mb-14">
+        Топ рекомендуемых направлений
+      </h2>
+      <div className="flex justify-center flex-wrap gap-6 max-w-6xl mx-auto px-4 mb-19">
+        {topDirectionItems.map((directionItem, index) => (
+          <DirectionItem
+            key={index}
+            id={index}
+            image={directionItem.image}
+            name={directionItem.name}
+            code={directionItem.number}
+          />
+        ))}
+      </div>
     </div>
   );
 };
