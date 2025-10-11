@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { DirectionItem } from "./DirectionItem";
 import { useEffect, useState } from "react";
 
@@ -19,8 +20,7 @@ export const Directions = () => {
     fetchData();
   }, []);
   if (error) {
-    console.log(error);
-    // потом сделаю
+    return <Link to={"/404"} />;
   }
   console.log(directions);
   return (

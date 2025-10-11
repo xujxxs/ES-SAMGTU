@@ -1,6 +1,6 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DirectionItem } from "../HomePage/main/Direct/DirectionItem";
-import { DirectionData } from "../../data/cardOfDirection.data";
+import { Link } from "react-router-dom";
 
 const directionCodeMap = {
   ПМ: "01.03.02",
@@ -17,6 +17,26 @@ const directionCodeMap = {
 };
 
 export const Results = ({ scores }) => {
+  const [directions, setDirections] = useState([]);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("src/data/cardOfDirection.json");
+        if (!response.ok) throw new Error("Failed to response");
+        const data = await response.json();
+        setDirections(data);
+      } catch (err) {
+        setError(true);
+      }
+    };
+    fetchData();
+  }, []);
+  if (error) {
+    return <Link to={"/404"} />;
+  }
+
   const sortedDirections = useMemo(() => {
     return Object.entries(scores)
       .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
@@ -29,7 +49,7 @@ export const Results = ({ scores }) => {
     return topDirections
       .map((code) => {
         const directionNumber = directionCodeMap[code];
-        return DirectionData.find((item) => item.number === directionNumber);
+        return directions.find((item) => item.number === directionNumber);
       })
       .filter((item) => item !== undefined);
   }, [topDirections]);

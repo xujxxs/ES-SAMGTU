@@ -1,43 +1,63 @@
 import { useState, useEffect } from "react";
-import { quizData } from "../../data/quizData";
 import { Question } from "./Question";
+import { Link } from "react-router-dom";
 import { Results } from "./Results";
 
 export const Quiz = () => {
+  const [quizData, setQuizData] = useState(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const FetchDataQuiz = async () => {
+      try {
+        const response = await fetch("/src/data/quizData.json");
+        if (!response.ok) throw new Error("Failed to fetch data");
+        const data = await response.json();
+        setQuizData(data);
+      } catch (error) {
+        setError(true);
+      }
+    };
+    FetchDataQuiz();
+  }, []);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState({});
   const [isCompleted, setIsCompleted] = useState(false);
 
-  const initializeScores = () => {
-    const initialScores = {};
-    Object.keys(quizData.directions).forEach((key) => {
-      initialScores[key] = 0;
-    });
-    return initialScores;
-  };
-
   useEffect(() => {
-    setScores(initializeScores());
-  }, []);
+    if (quizData?.directions) {
+      const initialScores = {};
+      Object.keys(quizData.directions).forEach((key) => {
+        initialScores[key] = 0;
+      });
+      setScores(initialScores);
+    }
+  }, [quizData]);
 
+  const questions = quizData?.questions || [];
+  const currentQuestionData = questions[currentQuestion];
+
+  const progress = Math.round(((currentQuestion + 1) / questions.length) * 100);
   const handleAnswerSelect = (answerIndex) => {
-    const selectedAnswer =
-      quizData.questions[currentQuestion].answers[answerIndex];
+    const selectedAnswer = currentQuestionData.answers[answerIndex];
 
     const newScores = { ...scores };
     Object.entries(selectedAnswer.scores).forEach(([direction, score]) => {
-      newScores[direction] += score;
+      newScores[direction] = (newScores[direction] || 0) + score;
     });
     setScores(newScores);
 
-    if (currentQuestion < quizData.questions.length - 1) {
+    if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setIsCompleted(true);
     }
   };
 
-  const progress = ((currentQuestion + 1) / quizData.questions.length) * 100;
+  if (error) {
+    return <Link to={"/404"} />;
+  }
 
   if (isCompleted) {
     return <Results scores={scores} />;
@@ -48,7 +68,7 @@ export const Quiz = () => {
       <div className="max-w-3xl mx-auto">
         <div className="flex justify-between text-gray-600 mb-2">
           <h4 className="font-medium text-xs sm:text-sm md:text-base">
-            Вопрос {currentQuestion + 1} из {quizData.questions.length}
+            Вопрос {currentQuestion + 1} из {questions.length}
           </h4>
           <h4 className="font-medium text-xs sm:text-sm md:text-base">
             {progress}%
@@ -62,7 +82,7 @@ export const Quiz = () => {
         </div>
         <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-sm sm:shadow-md md:shadow-lg shadow-blue-100">
           <Question
-            question={quizData.questions[currentQuestion]}
+            question={currentQuestionData}
             handleAnswerSelect={handleAnswerSelect}
           />
         </div>
