@@ -1,15 +1,15 @@
 services:
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        - REACT_APP_BACKEND_URL=
-    environment:
-      - NODE_ENV=production
-    depends_on:
-      - backend
-    networks:
-      - samgtu_es
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     args:
+  #       - REACT_APP_BACKEND_URL=
+  #   environment:
+  #     - NODE_ENV=production
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - samgtu_es
 
   backend:
     build: 

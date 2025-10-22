@@ -1,10 +1,11 @@
-FROM openjdk:17-alpine AS build
+FROM openjdk:17-slim AS build
 WORKDIR /app
 
 COPY build.gradle settings.gradle gradlew ./
 COPY gradle ./gradle
 COPY src ./src
 
+RUN chmod +x ./gradlew
 RUN ./gradlew clean build -x test
 
 FROM eclipse-temurin:17-jdk-alpine
